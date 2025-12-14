@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6tv45joa50c1"]
+
+[ext_resource type="PackedScene" uid="uid://ml6uenfsux45" path="res://scenes/throwable.tscn" id="1_ig7tw"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Throwable" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(77, 86)
+velocity = Vector2(300, 3)
+mass = 1.0
+cross_section_area = 0.1
+air_density = 0.1
+drag_coefficient = 0.001
