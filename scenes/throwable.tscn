@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ml6uenfsux45"]
+[gd_scene load_steps=2 format=3 uid="uid://ml6uenfsux45"]
 
-[ext_resource type="Texture2D" uid="uid://bqvtuwhfd585m" path="res://icon.svg" id="1_2nnd5"]
 [ext_resource type="Script" uid="uid://gke62q5q0sta" path="res://scenes/throwable.gd" id="1_ef5ia"]
 
-[node name="Throwable" type="Node2D"]
+[node name="Throwable" type="Node"]
 script = ExtResource("1_ef5ia")
-
-[node name="Icon" type="Sprite2D" parent="."]
-texture = ExtResource("1_2nnd5")

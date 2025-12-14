@@ -1,5 +1,8 @@
-extends Node2D
+extends Node
 
+@export var node:Node2D
+
+@export_category("Params")
 @export var velocity: Vector2=Vector2(0,0)
 @export var mass: float=10
 @export var cross_section_area:float=1
@@ -9,7 +12,7 @@ extends Node2D
 @onready var k:float=((cross_section_area * air_density * drag_coefficient)/mass)/2
 var g=-ProjectSettings.get_setting("physics/2d/default_gravity")
 
-@onready var state:State=State.new(self.position, velocity)
+@onready var state:State=State.new(node.position, velocity)
 
 class State:
 	var position:Vector2
@@ -56,8 +59,9 @@ func rk4(state: State, delta:float) -> State:
 	
 
 func _physics_process(delta: float) -> void:
+	state.position=node.position
 	state=rk4(state, delta)
-	self.position=state.position
+	node.position=state.position
 	#print("Position:", state.position, "Velocity:", state.velocity, "k:",k, "cross_section_area * air_density * drag_coefficient:",((cross_section_area * air_density * drag_coefficient)/mass)/2)
 	
 	
