@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfefqdoyqgw40"]
+
+[ext_resource type="Texture2D" uid="uid://2bnkrqml5bgs" path="res://assets/snowball.png" id="1_6tw0o"]
+[ext_resource type="Script" uid="uid://pptxoi13plep" path="res://scenes/snowball.gd" id="1_dnn3y"]
+[ext_resource type="PackedScene" uid="uid://ml6uenfsux45" path="res://scenes/throwable.tscn" id="2_xsgkx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6tw0o"]
+radius = 4.0
+
+[node name="Snowball" type="Area2D" groups=["Snowballs"]]
+top_level = true
+z_index = 15
+scale = Vector2(2, 2)
+script = ExtResource("1_dnn3y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6tw0o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6tw0o")
+
+[node name="Throwable" parent="." node_paths=PackedStringArray("node") instance=ExtResource("2_xsgkx")]
+node = NodePath("..")
+mass = 20.0
+cross_section_area = 0.1
+air_density = 0.1
+drag_coefficient = 0.1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

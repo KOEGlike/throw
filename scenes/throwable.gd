@@ -1,5 +1,7 @@
 extends Node
 
+class_name Throwable
+
 @export var node:Node2D
 
 @export_category("Params")
@@ -60,8 +62,10 @@ func rk4(state: State, delta:float) -> State:
 
 func _physics_process(delta: float) -> void:
 	state.position=node.position
+	state.velocity=velocity
 	state=rk4(state, delta)
 	node.position=state.position
+	velocity = state.velocity
 	#print("Position:", state.position, "Velocity:", state.velocity, "k:",k, "cross_section_area * air_density * drag_coefficient:",((cross_section_area * air_density * drag_coefficient)/mass)/2)
 	
 	

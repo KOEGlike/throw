@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbfmnqnqftpuh"]
+
+[ext_resource type="Script" uid="uid://ckrlivhpwc36m" path="res://scenes/grenade_launcher.gd" id="1_otuns"]
+[ext_resource type="Texture2D" uid="uid://cle7x6wdwuv82" path="res://assets/grenade launcher beige.png" id="2_xkra4"]
+
+[node name="GrenadeLauncher" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_otuns")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-43.5, 0)
+scale = Vector2(-1, 1)
+texture = ExtResource("2_xkra4")
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(-64, 0)
