@@ -1,7 +1,8 @@
-[gd_scene load_steps=165 format=4 uid="uid://3wh3g7uj6ehc"]
+[gd_scene load_steps=169 format=4 uid="uid://3wh3g7uj6ehc"]
 
 [ext_resource type="TileSet" uid="uid://5yollmch5twv" path="res://tileset.tres" id="1_4xfga"]
 [ext_resource type="Texture2D" uid="uid://ertl0kov61ed" path="res://assets/5.png" id="1_paxxb"]
+[ext_resource type="Script" uid="uid://4uudvigaglnk" path="res://scenes/tile_map_layer.gd" id="3_jf710"]
 [ext_resource type="Texture2D" uid="uid://cxajndmbrwhye" path="res://assets/snow/frame_000_delay-0.05s.png" id="3_xpsu5"]
 [ext_resource type="Texture2D" uid="uid://dgb4kbk4ssprr" path="res://assets/snow/frame_001_delay-0.05s.png" id="4_e2fbw"]
 [ext_resource type="Texture2D" uid="uid://bri8g7kadk6sw" path="res://assets/snow/frame_002_delay-0.05s.png" id="5_jf710"]
@@ -163,6 +164,8 @@
 [ext_resource type="Texture2D" uid="uid://cl77dbhxv6hfo" path="res://assets/snow/frame_158_delay-0.05s.png" id="161_rb3qv"]
 [ext_resource type="Texture2D" uid="uid://dd8lg43eibnu6" path="res://assets/snow/frame_159_delay-0.05s.png" id="162_p36m4"]
 [ext_resource type="Script" uid="uid://o4frbaqcdasi" path="res://scenes/snow.gd" id="163_e2fbw"]
+[ext_resource type="Script" uid="uid://dd1sk0in410g5" path="res://scenes/world_edge.gd" id="165_h5fij"]
+[ext_resource type="PackedScene" uid="uid://dsbum512880yc" path="res://scenes/target.tscn" id="166_1rqg4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_paxxb"]
 animations = [{
@@ -652,7 +655,9 @@ animations = [{
 "speed": 24.0
 }]
 
-[node name="Map" type="Node"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jf710"]
+
+[node name="Map" type="Node2D"]
 
 [node name="5" type="Sprite2D" parent="."]
 z_index = 1
@@ -663,15 +668,35 @@ texture = ExtResource("1_paxxb")
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = 1
 scale = Vector2(3, 3)
-tile_map_data = PackedByteArray("AAAAAAsABAAJAAAAAAAAAAwABAAJAAAAAAAAAA0ABAAJAAAAAAABAAsABAAJAAAAAAABAAwABAAJAAAAAAABAA0ABAAJAAAAAAACAAsABAAJAAAAAAACAAwABAAJAAAAAAACAA0ABAAJAAAAAAADAAsABAAJAAAAAAADAAwABAAJAAAAAAADAA0ABAAJAAAAAAAEAAsABAAJAAAAAAAEAAwABAAJAAAAAAAEAA0ABAAJAAAAAAAFAAsABAAJAAAAAAAFAAwABAAJAAAAAAAFAA0ABAAJAAAAAAAGAAsABAAJAAAAAAAGAAwABAAJAAAAAAAGAA0ABAAJAAAAAAAHAAsABAAJAAAAAAAHAAwABAAJAAAAAAAHAA0ABAAJAAAAAAAIAAsABAAJAAAAAAAIAAwABAAJAAAAAAAIAA0ABAAJAAAAAAAJAAsABAAJAAAAAAAJAAwABAAJAAAAAAAJAA0ABAAJAAAAAAAKAAsABAAJAAAAAAAKAAwABAAJAAAAAAAKAA0ABAAJAAAAAAALAAsABAAJAAAAAAALAAwABAAJAAAAAAALAA0ABAAJAAAAAAAMAAsABAAJAAAAAAAMAAwABAAJAAAAAAAMAA0ABAAJAAAAAAANAAsABAAJAAAAAAANAAwABAAJAAAAAAANAA0ABAAJAAAAAAAOAAsABAAJAAAAAAAOAAwABAAJAAAAAAAOAA0ABAAJAAAAAAAPAAsABAAJAAAAAAAPAAwABAAJAAAAAAAPAA0ABAAJAAAAAAAQAAsABAAJAAAAAAAQAAwABAAJAAAAAAAQAA0ABAAJAAAAAAARAAsABAAJAAAAAAARAAwABAAJAAAAAAARAA0ABAAJAAAAAAASAAsABAAJAAAAAAASAAwABAAJAAAAAAASAA0ABAAJAAAAAAATAAsABAAJAAAAAAATAAwABAAJAAAAAAATAA0ABAAJAAAAAAAUAAsABAAJAAAAAAAUAAwABAAJAAAAAAAUAA0ABAAJAAAAAAAVAAsABAAJAAAAAAAVAAwABAAJAAAAAAAVAA0ABAAJAAAAAAAWAAsABAAJAAAAAAAWAAwABAAJAAAAAAAWAA0ABAAJAAAAAAAXAAsABAAJAAAAAAAXAAwABAAJAAAAAAAXAA0ABAAJAAAAAAAGAAQABAACAA0AAAAPAAUABAACAA0AAAA=")
+tile_map_data = PackedByteArray("AAAAAAsABAAJAAAAAAABAAsABAAJAAAAAAACAAsABAAJAAAAAAADAAsABAAJAAAAAAAEAAsABAAJAAAAAAAFAAsABAAJAAAAAAAGAAsABAAJAAAAAAAHAAsABAAJAAAAAAAIAAsABAAJAAAAAAAJAAsABAAJAAAAAAAKAAsABAAJAAAAAAALAAsABAAJAAAAAAAMAAsABAAJAAAAAAANAAsABAAJAAAAAAAOAAsABAAJAAAAAAAPAAsABAAJAAAAAAAQAAsABAAJAAAAAAARAAsABAAJAAAAAAASAAsABAAJAAAAAAATAAsABAAJAAAAAAAUAAsABAAJAAAAAAAVAAsABAAJAAAAAAAWAAsABAAJAAAAAAAXAAsABAAJAAAAAAAGAAQABAACAAEAAAAOAAcABAACAAEAAAATAAYABAACAAEAAAAPAAQABAACAAEAAAALAAIABAACAAEAAAACAAUABAACAAEAAAAJAAkABAACAAEAAAAWAAkABAACAAEAAAAUAAMABAACAAEAAAAHAAcABAACAAEAAAAbAAsABAAEAAEAAAAdAAkABAAEAAEAAAAfAAYABAAEAAEAAAAdAAMABAAEAAEAAAAaAAEABAAEAAEAAAAXAP//BAAEAAEAAAAUAP7/BAAEAAEAAAARAPz/BAAEAAEAAAAOAPr/BAAEAAEAAAAOAP//BAAEAAEAAAAIAP3/BAAEAAEAAAAcAP3/BAADAAAAAAD8//3/BAADAAAAAAA=")
 tile_set = ExtResource("1_4xfga")
+script = ExtResource("3_jf710")
 
 [node name="Snow" type="AnimatedSprite2D" parent="."]
 z_index = 20
-position = Vector2(676, 87)
+position = Vector2(668, 87)
 rotation = 0.7853982
-scale = Vector2(4, 4)
+scale = Vector2(3.9999998, 3.9999998)
 sprite_frames = SubResource("SpriteFrames_paxxb")
 autoplay = "default"
-frame_progress = 0.88838047
+frame_progress = 0.86733747
 script = ExtResource("163_e2fbw")
+
+[node name="world edge" type="Area2D" parent="."]
+script = ExtResource("165_h5fij")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world edge"]
+position = Vector2(535, 717)
+shape = SubResource("WorldBoundaryShape2D_jf710")
+
+[node name="Target" parent="." instance=ExtResource("166_1rqg4")]
+position = Vector2(84, 14)
+
+[node name="Target2" parent="." instance=ExtResource("166_1rqg4")]
+position = Vector2(-116, -656)
+
+[node name="Target3" parent="." instance=ExtResource("166_1rqg4")]
+position = Vector2(1317, -659)
+scale = Vector2(-1, 1)
+
+[connection signal="body_entered" from="world edge" to="world edge" method="_on_body_entered"]

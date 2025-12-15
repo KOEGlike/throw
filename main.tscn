@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6tv45joa50c1"]
+[gd_scene load_steps=4 format=3 uid="uid://b6tv45joa50c1"]
 
 [ext_resource type="PackedScene" uid="uid://day0p0gnenjfu" path="res://scenes/player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://3wh3g7uj6ehc" path="res://scenes/map.tscn" id="2_0xm2m"]
+[ext_resource type="AudioStream" uid="uid://byneinmjmupfy" path="res://assets/toby fox - UNDERTALE Soundtrack - 22 Snowdin Town.mp3" id="3_h2yge"]
 
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(535, 232)
 
 [node name="Map" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(-535, -232)
+
+[node name="TobyFoxUndertaleSoundtrack22SnowdinTown" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-676, 287)
+stream = ExtResource("3_h2yge")
+autoplay = true

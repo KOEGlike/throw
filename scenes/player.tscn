@@ -40,9 +40,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
-radius = 27.0
-height = 84.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
+size = Vector2(49.5, 78)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 14
@@ -56,10 +55,16 @@ sprite_frames = SubResource("SpriteFrames_tuyoq")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_3vyb7")
+position = Vector2(0.25, 3)
+shape = SubResource("RectangleShape2D_qhqgy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -199)
+limit_left = -1000
+limit_top = -600
+limit_right = 1000
+limit_bottom = 1000
+limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="GrenadeLauncher" parent="." instance=ExtResource("3_qhqgy")]
