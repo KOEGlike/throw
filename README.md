@@ -4,4 +4,4 @@
 
 ## [playable at](https://koeglike.itch.io/snowball-target)
 
-Shoot targets with snowballs, with custom projectile physics
+Shoot targets with snowballs in the wind, with custom projectile physics
