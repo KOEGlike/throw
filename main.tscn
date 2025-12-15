@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6tv45joa50c1"]
+[gd_scene load_steps=4 format=4 uid="uid://b6tv45joa50c1"]
 
 [ext_resource type="PackedScene" uid="uid://ml6uenfsux45" path="res://scenes/throwable.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://bqvtuwhfd585m" path="res://icon.svg" id="2_0xm2m"]
+[ext_resource type="TileSet" uid="uid://5yollmch5twv" path="res://tileset.tres" id="3_h2yge"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -18,3 +19,7 @@ drag_coefficient = 0.001
 [node name="Icon" type="Sprite2D" parent="Node2D"]
 position = Vector2(83, 561)
 texture = ExtResource("2_0xm2m")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAEAAAACAAQAAAABAAEAAAACAAQAAAABAAIAAAACAAQAAAACAAIAAAACAAQAAAADAAIAAAACAAQAAAAEAAIAAAACAAQAAAA=")
+tile_set = ExtResource("3_h2yge")
