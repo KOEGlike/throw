@@ -1,7 +1,7 @@
 [gd_scene load_steps=169 format=4 uid="uid://3wh3g7uj6ehc"]
 
+[ext_resource type="Texture2D" uid="uid://b67uik6ivr2hq" path="res://scenes/10.png" id="1_1rqg4"]
 [ext_resource type="TileSet" uid="uid://5yollmch5twv" path="res://tileset.tres" id="1_4xfga"]
-[ext_resource type="Texture2D" uid="uid://ertl0kov61ed" path="res://assets/5.png" id="1_paxxb"]
 [ext_resource type="Script" uid="uid://4uudvigaglnk" path="res://scenes/tile_map_layer.gd" id="3_jf710"]
 [ext_resource type="Texture2D" uid="uid://cxajndmbrwhye" path="res://assets/snow/frame_000_delay-0.05s.png" id="3_xpsu5"]
 [ext_resource type="Texture2D" uid="uid://dgb4kbk4ssprr" path="res://assets/snow/frame_001_delay-0.05s.png" id="4_e2fbw"]
@@ -663,12 +663,12 @@ animations = [{
 z_index = 1
 position = Vector2(576, 118)
 scale = Vector2(3.625, 3.625)
-texture = ExtResource("1_paxxb")
+texture = ExtResource("1_1rqg4")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = 1
 scale = Vector2(3, 3)
-tile_map_data = PackedByteArray("AAAAAAsABAAJAAAAAAABAAsABAAJAAAAAAACAAsABAAJAAAAAAADAAsABAAJAAAAAAAEAAsABAAJAAAAAAAFAAsABAAJAAAAAAAGAAsABAAJAAAAAAAHAAsABAAJAAAAAAAIAAsABAAJAAAAAAAJAAsABAAJAAAAAAAKAAsABAAJAAAAAAALAAsABAAJAAAAAAAMAAsABAAJAAAAAAANAAsABAAJAAAAAAAOAAsABAAJAAAAAAAPAAsABAAJAAAAAAAQAAsABAAJAAAAAAARAAsABAAJAAAAAAASAAsABAAJAAAAAAATAAsABAAJAAAAAAAUAAsABAAJAAAAAAAVAAsABAAJAAAAAAAWAAsABAAJAAAAAAAXAAsABAAJAAAAAAAGAAQABAACAAEAAAAOAAcABAACAAEAAAATAAYABAACAAEAAAAPAAQABAACAAEAAAALAAIABAACAAEAAAACAAUABAACAAEAAAAJAAkABAACAAEAAAAWAAkABAACAAEAAAAUAAMABAACAAEAAAAHAAcABAACAAEAAAAbAAsABAAEAAEAAAAdAAkABAAEAAEAAAAfAAYABAAEAAEAAAAdAAMABAAEAAEAAAAaAAEABAAEAAEAAAAXAP//BAAEAAEAAAAUAP7/BAAEAAEAAAARAPz/BAAEAAEAAAAOAPr/BAAEAAEAAAAOAP//BAAEAAEAAAAIAP3/BAAEAAEAAAAcAP3/BAADAAAAAAD8//3/BAADAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAsABAAJAAAAAAABAAsABAAJAAAAAAACAAsABAAJAAAAAAADAAsABAAJAAAAAAAEAAsABAAJAAAAAAAFAAsABAAJAAAAAAAGAAsABAAJAAAAAAAHAAsABAAJAAAAAAAIAAsABAAJAAAAAAAJAAsABAAJAAAAAAAKAAsABAAJAAAAAAALAAsABAAJAAAAAAAMAAsABAAJAAAAAAANAAsABAAJAAAAAAAOAAsABAAJAAAAAAAPAAsABAAJAAAAAAAQAAsABAAJAAAAAAARAAsABAAJAAAAAAASAAsABAAJAAAAAAATAAsABAAJAAAAAAAUAAsABAAJAAAAAAAVAAsABAAJAAAAAAAWAAsABAAJAAAAAAAXAAsABAAJAAAAAAAGAAQABAACAAEAAAAOAAcABAACAAEAAAATAAYABAACAAEAAAAPAAQABAACAAEAAAALAAIABAACAAEAAAACAAUABAACAAEAAAAJAAkABAACAAEAAAAWAAkABAACAAEAAAAUAAMABAACAAEAAAAbAAsABAAEAAEAAAAdAAkABAAEAAEAAAAfAAYABAAEAAEAAAAdAAMABAAEAAEAAAAaAAEABAAEAAEAAAAXAP//BAAEAAEAAAAUAP7/BAAEAAEAAAARAPz/BAAEAAEAAAAOAPr/BAAEAAEAAAAOAP//BAAEAAEAAAAIAP3/BAAEAAEAAAAcAP3/BAADAAAAAAD8//3/BAADAAAAAAAFAAcABAAEAAEAAAA=")
 tile_set = ExtResource("1_4xfga")
 script = ExtResource("3_jf710")
 
@@ -679,7 +679,7 @@ rotation = 0.7853982
 scale = Vector2(3.9999998, 3.9999998)
 sprite_frames = SubResource("SpriteFrames_paxxb")
 autoplay = "default"
-frame_progress = 0.86733747
+frame_progress = 0.9372792
 script = ExtResource("163_e2fbw")
 
 [node name="world edge" type="Area2D" parent="."]
@@ -692,11 +692,32 @@ shape = SubResource("WorldBoundaryShape2D_jf710")
 [node name="Target" parent="." instance=ExtResource("166_1rqg4")]
 position = Vector2(84, 14)
 
+[node name="Label" parent="Target" index="2"]
+offset_left = -115.0
+offset_top = 442.0
+offset_right = -73.0
+offset_bottom = 513.0
+
 [node name="Target2" parent="." instance=ExtResource("166_1rqg4")]
 position = Vector2(-116, -656)
 
 [node name="Target3" parent="." instance=ExtResource("166_1rqg4")]
-position = Vector2(1317, -659)
-scale = Vector2(-1, 1)
+position = Vector2(1372, -659)
+
+[node name="CollisionShape2D" parent="Target3" index="0"]
+position = Vector2(-1, 469)
+scale = Vector2(-0.25, 0.25)
+
+[node name="Frame00Delay0_05sRemovebgPreview" parent="Target3" index="1"]
+scale = Vector2(-0.25, 0.25)
+
+[node name="Label" parent="Target3" index="2"]
+offset_left = -26.0
+offset_top = 391.0
+offset_right = 16.0
+offset_bottom = 462.0
 
 [connection signal="body_entered" from="world edge" to="world edge" method="_on_body_entered"]
+
+[editable path="Target"]
+[editable path="Target3"]
