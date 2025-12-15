@@ -6,7 +6,7 @@ const SNOWBALL = preload("uid://dfefqdoyqgw40")
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and event.is_pressed():
 		var instance:Snowball = SNOWBALL.instantiate();
 		spawn_point.add_child(instance)
 		instance.global_position = spawn_point.global_position

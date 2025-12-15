@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfefqdoyqgw40"]
+[gd_scene load_steps=6 format=3 uid="uid://dfefqdoyqgw40"]
 
 [ext_resource type="Texture2D" uid="uid://2bnkrqml5bgs" path="res://assets/snowball.png" id="1_6tw0o"]
 [ext_resource type="Script" uid="uid://pptxoi13plep" path="res://scenes/snowball.gd" id="1_dnn3y"]
@@ -6,6 +6,10 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6tw0o"]
 radius = 4.0
+
+[sub_resource type="Curve" id="Curve_dnn3y"]
+_data = [Vector2(0.030042917, 1), 0.0, 0.0, 0, 0, Vector2(0.6738197, 0.7415731), -1.0216498, -1.0216498, 0, 0, Vector2(0.9957081, 0.10112369), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Snowball" type="Area2D" groups=["Snowballs"]]
 top_level = true
@@ -26,4 +30,24 @@ cross_section_area = 0.1
 air_density = 0.1
 drag_coefficient = 0.1
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = 16
+texture_filter = 2
+rotation = -1.5707964
+scale = Vector2(2, 2)
+emitting = false
+texture = ExtResource("1_6tw0o")
+lifetime = 0.31
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+initial_velocity_min = 40.35
+initial_velocity_max = 107.3
+damping_min = 26.908
+damping_max = 41.081
+scale_amount_min = 0.45
+scale_amount_max = 1.55
+scale_amount_curve = SubResource("Curve_dnn3y")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="CPUParticles2D" to="." method="_on_cpu_particles_2d_finished"]

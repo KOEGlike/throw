@@ -59,14 +59,18 @@ func rk4(state: State, delta:float) -> State:
 	
 	return state.add(k1.add(k2.multipl_by_scalar(2)).add(k3.multipl_by_scalar(2)).add(k4).multipl_by_time(delta/6))
 	
+func apply_wind(state:State) -> State:
+	return State.new(state.position, state.velocity-Manager.wind_velocity)
 
 func _physics_process(delta: float) -> void:
 	state.position=node.position
 	state.velocity=velocity
+	
 	state=rk4(state, delta)
+	state=apply_wind(state)
+	
 	node.position=state.position
 	velocity = state.velocity
-	#print("Position:", state.position, "Velocity:", state.velocity, "k:",k, "cross_section_area * air_density * drag_coefficient:",((cross_section_area * air_density * drag_coefficient)/mass)/2)
 	
 	
 	

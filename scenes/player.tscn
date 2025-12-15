@@ -59,7 +59,7 @@ animation = &"walk"
 shape = SubResource("CapsuleShape2D_3vyb7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -259)
+position = Vector2(0, -199)
 position_smoothing_enabled = true
 
 [node name="GrenadeLauncher" parent="." instance=ExtResource("3_qhqgy")]
